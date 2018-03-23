@@ -5,7 +5,7 @@ import 'core-js/fn/symbol/iterator';
 import 'core-js/es6/set';
 import 'core-js/es6/weak-set';
 import proxyPolyfill from 'proxy-polyfill/src/proxy';
-import { WebViewEndpoint } from './rn-webview-rpc';
+import { WebViewEndpoint } from 'rn-webview-rpc';
 import { Comlink } from 'comlinkjs';
 import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
 // import './global';

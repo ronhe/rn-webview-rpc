@@ -60,5 +60,5 @@ typings/
 # Babel output dir
 lib/
 
-# IDE configration
+# IDE configuration
 .idea/
