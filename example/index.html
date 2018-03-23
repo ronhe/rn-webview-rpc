@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comlink react-native-webview example</title>
+    <script src="https://cdn.jsdelivr.net/npm/comlinkjs/comlink.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/comlinkjs/messagechanneladapter.global.js"></script>
+    <script>
+        const proxy = Comlink.proxy(MessageChannelAdapter.wrap(
+          {
+              send: (data) => {console.log(data); return window.postMessage(data, '*')},
+              addEventListener: (type, listener, options) =>
+                document.addEventListener(type, listener, options)
+            }
+        ));
+
+        async function fireNativeAlert() {
+          console.log('ready?');
+          await proxy.Alert.alert(
+            'What is your favorite color?',
+            'We got green and blue',
+            [
+              {text: 'Ask me later'},
+              {text: 'Green', onPress: Comlink.proxyValue(() => setBgColor('green'))},
+              {text: 'Blue', onPress: Comlink.proxyValue(() => setBgColor('blue'))},
+            ],
+            { cancelable: false }
+          );
+        }
+
+        function setBgColor(color) {
+          document.body.style.backgroundColor = color;
+        }
+
+        async function getNetInfo() {
+          let netInfo = await await proxy.NetInfo.getConnectionInfo();
+          alert(`type: ${netInfo.type}, effectiveType: ${netInfo.effectiveType}`);
+        }
+
+        // Comlink.expose({ setBgColor }, MessageChannelAdapter.wrap(
+        //   {
+        //       send: (data) => {console.log(data); return window.postMessage(data, '*')},
+        //       addEventListener: (type, listener, options) =>
+        //         document.addEventListener(type, listener, options)
+        //     }
+        // ));
+    </script>
+    <style>
+        html, body, .container {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick="fireNativeAlert()" style="font-size: 26px;">
+            Fire a native alert
+        </button>
+        <div class="line-break"></div>
+        <button onclick="getNetInfo()" style="font-size: 26px; margin:15px;">
+            Get net info
+        </button>
+    </div>
+</body>
+</html>
