@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Babel output dir
+lib/
+
+# IDE configration
+.idea/

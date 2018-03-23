@@ -1,0 +1,35 @@
+{
+  "name": "rn-webview-rpc",
+  "version": "0.1.0",
+  "description": "Adding RPC capabilities to a React Native WebView component",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronhe/rn-webview-rpc.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "React-Native",
+    "RPC",
+    "WebView",
+    "Comlink",
+    "comlinkjs",
+    "bridge",
+    "postMessage"
+  ],
+  "author": "Ron Heimann <ron.heimann@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ronhe/rn-webview-rpc/issues"
+  },
+  "homepage": "https://github.com/ronhe/rn-webview-rpc#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
