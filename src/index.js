@@ -1,4 +1,3 @@
+import WebViewEndpoint from './webview-endpoint';
 
-module.exports = function(number) {
-    return number * 2;
-};
+module.exports.WebViewEndpoint = WebViewEndpoint;

@@ -1,7 +1,7 @@
 {
   "name": "rn-webview-rpc",
   "version": "0.1.0",
-  "description": "Adding RPC capabilities to a React Native WebView component",
+  "description": "Adding RPC capabilities to the React Native WebView component",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --reporter spec",
@@ -30,6 +30,14 @@
   "homepage": "https://github.com/ronhe/rn-webview-rpc#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "dependencies": {
+    "comlinkjs": "^2.3.5"
   }
 }
