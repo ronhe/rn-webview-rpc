@@ -1,5 +1,7 @@
-import './message-channel-polyfill';
+import './global';
 import WebViewEndpoint from './webview-endpoint';
+import WebViewRpc from './webview-rpc';
 
 
-module.exports.WebViewEndpoint = WebViewEndpoint;
+export default WebViewRpc;
+export { WebViewEndpoint };

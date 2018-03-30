@@ -1,19 +1,15 @@
-import { Comlink } from 'comlinkjs';
-import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
-import './message-channel-polyfill';
-
+/* global __DEV__ */
 
 export default class WebViewEndpoint {
-  constructor() {
+  constructor(webView) {
     this.listeners = [];
-    this.webView = null;
+    this.webView = webView;
   }
 
   send(data) {
-    if (this.webView === null) {
-      throw Error('webView has not been initialized yet.');
+    if (__DEV__) {
+      console.log(`Sending message ${data}`);
     }
-    console.log(`Sending message ${data}`);
     return this.webView.postMessage(data);
   }
 
@@ -25,6 +21,9 @@ export default class WebViewEndpoint {
   }
 
   onMessage(event) {
+    if (__DEV__) {
+      console.log(`Received message ${JSON.stringify(event.nativeEvent)}`);
+    }
     this.listeners.forEach((listener) => {
       if (typeof listener === 'function') {
         listener(event.nativeEvent);
@@ -32,9 +31,5 @@ export default class WebViewEndpoint {
         listener.handleEvent(event.nativeEvent);
       }
     });
-  }
-
-  expose(rootObj) {
-    Comlink.expose(rootObj, MessageChannelAdapter.wrap(this));
   }
 }

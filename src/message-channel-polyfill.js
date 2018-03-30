@@ -1,5 +1,3 @@
-/* global global */
-
 
 export class MessagePortPolyfill {
   constructor() {
@@ -33,9 +31,4 @@ export class MessageChannelPolyfill {
     this.port1.otherPort = this.port2;
     this.port2.otherPort = this.port1;
   }
-}
-
-if (typeof MessagePort === 'undefined') {
-  global.MessagePort = MessagePortPolyfill;
-  global.MessageChannel = MessageChannelPolyfill;
 }
