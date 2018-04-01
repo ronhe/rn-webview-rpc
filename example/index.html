@@ -8,10 +8,10 @@
     <script>
         const proxy = Comlink.proxy(MessageChannelAdapter.wrap(
           {
-              send: (data) => {console.log(data); return window.postMessage(data, '*')},
-              addEventListener: (type, listener, options) =>
-                document.addEventListener(type, listener, options)
-            }
+            send: (data) => {console.log(data); return window.postMessage(data, '*')},
+            addEventListener: (type, listener, options) =>
+              document.addEventListener(type, listener, options)
+          }
         ));
 
         async function fireNativeAlert() {
