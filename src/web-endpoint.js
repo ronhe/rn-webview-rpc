@@ -22,7 +22,7 @@ function loadScripts(urls, callback) {
   if (urls.length === 1) {
     loadScript(urls[0], callback);
   } else {
-    loadScripts(urls.slice(1), callback);
+    loadScript(urls[0], () => loadScripts(urls.slice(1), callback));
   }
 }
 

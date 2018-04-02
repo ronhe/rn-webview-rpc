@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Comlink react-native-webview example</title>
-    <script src="https://cdn.jsdelivr.net/npm/comlinkjs/comlink.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/comlinkjs/messagechanneladapter.global.js"></script>
+    <title>React-Native WebView RPC Example</title>
+    <!--<script src="https://cdn.jsdelivr.net/npm/comlinkjs/comlink.global.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/comlinkjs/messagechanneladapter.global.js"></script>-->
     <script>
-        const proxy = Comlink.proxy(MessageChannelAdapter.wrap(
-          {
-            send: (data) => {console.log(data); return window.postMessage(data, '*')},
-            addEventListener: (type, listener, options) =>
-              document.addEventListener(type, listener, options)
-          }
-        ));
+        // const proxy = Comlink.proxy(MessageChannelAdapter.wrap(
+        //   {
+        //     send: (data) => {console.log(data); return window.postMessage(data, '*')},
+        //     addEventListener: (type, listener, options) =>
+        //       document.addEventListener(type, listener, options)
+        //   }
+        // ));
 
         async function fireNativeAlert() {
           console.log('ready?');
-          await proxy.Alert.alert(
+          await rnRpc.proxy.Alert.alert(
             'What is your favorite color?',
             'We got green and blue',
             [
