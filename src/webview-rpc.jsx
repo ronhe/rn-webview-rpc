@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Comlink } from 'comlinkjs';
 import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
 import WebViewEndpoint from './webview-endpoint';
+import pckg from '../package.json';
 
 
 export default class WebViewRpc extends React.Component {
@@ -24,7 +25,7 @@ export default class WebViewRpc extends React.Component {
     props.injectedJavaScript =
       `
       var script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/rn-webview-rpc";
+      script.src = "https://cdn.jsdelivr.net/npm/rn-webview-rpc@${pckg.version}";
       document.head.appendChild(script);
       ${this.props.injectedJavaScript}
      `;

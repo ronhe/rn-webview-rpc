@@ -6,7 +6,6 @@ import html from './index.html';
 
 export default class App extends React.Component {
   render() {
-    console.log(html.toString())
     return (
       <View style={{ flex: 1 }}>
         <WebViewRpc
