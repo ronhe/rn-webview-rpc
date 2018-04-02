@@ -12,7 +12,6 @@ export default class App extends React.Component {
           style={{ marginTop: 0, flex: 1 }}
           source={html}
           exposedObj={{ Alert, NetInfo }}
-          injectedJavaScript={'console.log("hey");'}
         />
       </View>
     );

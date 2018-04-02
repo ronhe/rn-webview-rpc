@@ -1,6 +1,10 @@
 /* eslint-env node, browser */
 /* global Comlink, MessageChannelAdapter */
 
+
+const comlinkVer = '2.3.5;'
+
+
 // As found in https://stackoverflow.com/questions/950087/
 function loadScript(url, callback) {
   // Adding the script tag to the head as suggested before
@@ -36,8 +40,8 @@ function setRnProxy() {
 
 window.rnRpc = {};
 loadScripts(
-  ['https://cdn.jsdelivr.net/npm/comlinkjs/comlink.global.js',
-    'https://cdn.jsdelivr.net/npm/comlinkjs/messagechanneladapter.global.js',
+  [`https://cdn.jsdelivr.net/npm/comlinkjs@${comlinkVer}/comlink.global.js`,
+    `https://cdn.jsdelivr.net/npm/comlinkjs@${comlinkVer}/messagechanneladapter.global.js`,
   ],
   setRnProxy,
 );

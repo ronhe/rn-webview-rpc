@@ -3,17 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>React-Native WebView RPC Example</title>
-    <!--<script src="https://cdn.jsdelivr.net/npm/comlinkjs/comlink.global.js"></script>-->
-    <!--<script src="https://cdn.jsdelivr.net/npm/comlinkjs/messagechanneladapter.global.js"></script>-->
     <script>
-        // const proxy = Comlink.proxy(MessageChannelAdapter.wrap(
-        //   {
-        //     send: (data) => {console.log(data); return window.postMessage(data, '*')},
-        //     addEventListener: (type, listener, options) =>
-        //       document.addEventListener(type, listener, options)
-        //   }
-        // ));
-
         async function fireNativeAlert() {
           console.log('ready?');
           await rnRpc.proxy.Alert.alert(
@@ -33,7 +23,7 @@
         }
 
         async function getNetInfo() {
-          let netInfo = await await proxy.NetInfo.getConnectionInfo();
+          let netInfo = await await rnRpc.proxy.NetInfo.getConnectionInfo();
           alert(`type: ${netInfo.type}, effectiveType: ${netInfo.effectiveType}`);
         }
 
