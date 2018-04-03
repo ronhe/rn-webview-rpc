@@ -2,11 +2,11 @@
   "name": "rn-webview-rpc",
   "version": "0.4.4",
   "description": "Adding RPC capabilities to the React Native WebView component",
-  "main": "lib/index.js",
-  "jsdelivr": "lib/web-endpoint.js",
+  "main": "dist/index.js",
+  "browser": "dist/web-endpoint.js",
   "scripts": {
     "test": "mocha --reporter spec",
-    "build": "babel src -d lib"
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
