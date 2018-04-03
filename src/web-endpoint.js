@@ -2,7 +2,7 @@
 /* global Comlink, MessageChannelAdapter */
 
 
-const comlinkVer = '2.3.5;'
+const comlinkVer = '2.3.5';
 
 
 // As found in https://stackoverflow.com/questions/950087/
