@@ -1,3 +1,4 @@
 {
   "presets": ["env", "react", "babel-preset-stage-3"],
+  "ignore": ["src/__tests__/**"]
 }
