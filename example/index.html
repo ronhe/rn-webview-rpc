@@ -5,7 +5,6 @@
     <title>React-Native WebView RPC Example</title>
     <script>
         async function fireNativeAlert() {
-          console.log('ready?');
           await rnRpc.proxy.Alert.alert(
             'What is your favorite color?',
             'We got green and blue',

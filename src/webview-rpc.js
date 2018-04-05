@@ -1,7 +1,7 @@
 import React from 'react';
 import { WebView } from 'react-native';
 import PropTypes from 'prop-types';
-import { Comlink } from 'comlinkjs';
+import { Comlink } from 'comlinkjs/comlink.es6';
 import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
 import WebViewEndpoint from './webview-endpoint';
 import thisPackage from '../package.json';

@@ -5,12 +5,19 @@
   "main": "dist/index.js",
   "browser": "dist/web-endpoint.js",
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test": "jest",
     "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ronhe/rn-webview-rpc.git"
+  },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": ["/example/"],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|comlinkjs)/)"
+    ]
   },
   "keywords": [
     "React",
@@ -33,14 +40,17 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "^4.0.0",
     "babel-preset-stage-3": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
     "react": "^16.2.0",
-    "react-native": "^0.54.3"
+    "react-native": "^0.54.3",
+    "react-test-renderer": "^16.3.0"
   },
   "dependencies": {
     "comlinkjs": "^2.3.5",
