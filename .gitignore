@@ -58,7 +58,7 @@ typings/
 .env
 
 # Babel output dir
-lib/
+dist/
 
 # IDE configuration
 .idea/
