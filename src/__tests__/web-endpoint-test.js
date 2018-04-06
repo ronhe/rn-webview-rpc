@@ -5,7 +5,7 @@
 /* global test, expect, document, jest */
 /* eslint-disable global-require */
 
-import loaders from '../web-endpoint';
+import loaders from '../web-script';
 
 
 test('load script tag dynamically', () => {

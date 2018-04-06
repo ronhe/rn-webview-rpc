@@ -28,22 +28,23 @@ const loaders = {
       this.loadScript(urls[0], () => this.loadScripts(urls.slice(1), callback));
     }
   },
+};
+
+function setRnRpc() {
+  window.rnRpc = {
+    proxy: Comlink.proxy(MessageChannelAdapter.wrap({
+      send: data => window.postMessage(data, '*'),
+      addEventListener: document.addEventListener,
+    })),
+    proxyValue: Comlink.proxyValue,
+  };
 }
 
-function setRnProxy() {
-  window.rnRpc.proxy = Comlink.proxy(MessageChannelAdapter.wrap({
-    send: data => window.postMessage(data, '*'),
-    addEventListener: (type, listener, options) =>
-      document.addEventListener(type, listener, options),
-  }));
-}
-
-window.rnRpc = {};
 loaders.loadScripts(
   [`https://cdn.jsdelivr.net/npm/comlinkjs@${comlinkVer}/comlink.global.js`,
     `https://cdn.jsdelivr.net/npm/comlinkjs@${comlinkVer}/messagechanneladapter.global.js`,
   ],
-  setRnProxy,
+  setRnRpc,
 );
 
 

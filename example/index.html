@@ -10,8 +10,8 @@
             'We got green and blue',
             [
               {text: 'Ask me later'},
-              {text: 'Green', onPress: Comlink.proxyValue(() => setBgColor('green'))},
-              {text: 'Blue', onPress: Comlink.proxyValue(() => setBgColor('blue'))},
+              {text: 'Green', onPress: rnRpc.proxyValue(() => setBgColor('green'))},
+              {text: 'Blue', onPress: rnRpc.proxyValue(() => setBgColor('blue'))},
             ],
             { cancelable: false }
           );
