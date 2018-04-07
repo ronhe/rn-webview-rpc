@@ -2,8 +2,9 @@
   "name": "rn-webview-rpc",
   "version": "0.7.0",
   "description": "Adding RPC capabilities to the React Native WebView component",
-  "main": "dist/webview-rpc.js",
+  "main": "dist/index.js",
   "browser": "dist/web-script.js",
+  "files": ["/dist/"],
   "scripts": {
     "test": "jest",
     "build": "babel src -d dist"
