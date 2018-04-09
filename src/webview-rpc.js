@@ -5,7 +5,7 @@ import './global';
 import { Comlink } from 'comlinkjs/comlink.es6'; // eslint-disable-line import/first
 import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6'; // eslint-disable-line import/first
 import WebViewEndpoint from './webview-endpoint';
-import thisPackage from '../package.json';
+import { version } from './package.json';
 
 
 export default class WebViewRpc extends React.Component {
@@ -26,7 +26,7 @@ export default class WebViewRpc extends React.Component {
     props.injectedJavaScript =
       `
       var script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/rn-webview-rpc@${thisPackage.version}";
+      script.src = "https://cdn.jsdelivr.net/npm/rn-webview-rpc@${version}";
       document.head.appendChild(script);
       ${this.props.injectedJavaScript}
      `;

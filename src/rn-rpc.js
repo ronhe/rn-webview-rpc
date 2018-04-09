@@ -4,15 +4,16 @@ import { Comlink } from 'comlinkjs/comlink.es6';
 import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
 
 
-const rnRpc = {};
+const webEndpoint = {
+  send: data => window.postMessage(data, '*'),
+  addEventListener: (...args) => document.addEventListener(...args),
+  // I don't know why but addEventListener: document.addEventListener causes error
+};
 
-if (typeof window !== 'undefined') {
-  rnRpc.proxy = Comlink.proxy(MessageChannelAdapter.wrap({
-    send: data => window.postMessage(data, '*'),
-    addEventListener: document.addEventListener,
-  }));
-  rnRpc.proxyValue = Comlink.proxyValue;
-}
+const rnRpc = {
+  proxy: Comlink.proxy(MessageChannelAdapter.wrap(webEndpoint)),
+  proxyValue: Comlink.proxyValue,
+};
 
 
 export default rnRpc;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Alert, NetInfo } from 'react-native';
-import WebViewRpc from 'rn-webview-rpc';
+import WebViewRpc from 'rn-webview-rpc/webview-rpc';
 import html from './index.html';
 
 

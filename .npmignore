@@ -4,3 +4,6 @@ src/
 
 # example files
 example/
+
+# test files
+__tests__/

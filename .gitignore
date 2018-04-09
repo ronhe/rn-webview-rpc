@@ -57,8 +57,11 @@ typings/
 # dotenv environment variables file
 .env
 
-# Babel output dir
+# Output dir
 dist/
 
 # IDE configuration
 .idea/
+
+# Copied package.json
+src/package.json
