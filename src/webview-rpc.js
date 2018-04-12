@@ -5,8 +5,9 @@ import './global';
 import { Comlink } from 'comlinkjs/comlink.es6'; // eslint-disable-line import/first
 import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6'; // eslint-disable-line import/first
 import WebViewEndpoint from './webview-endpoint';
-import { version } from './package.json';
-
+// import { bundle } from './bundle.js.json';
+const json = require('./bundle.js.json');
+const bundle = json.bundle;
 
 export default class WebViewRpc extends React.Component {
   expose(obj) {
@@ -14,7 +15,7 @@ export default class WebViewRpc extends React.Component {
   }
 
   render() {
-    const { exposedObj, ...props } = this.props;
+    const { exposedObj, injectRnRpc, ...props } = this.props;
     props.ref = (webView) => {
       this.webView = webView;
       this.endpoint = new WebViewEndpoint(webView);
@@ -23,13 +24,9 @@ export default class WebViewRpc extends React.Component {
     props.onMessage = (msg) => {
       this.endpoint.onMessage(msg);
     };
-    props.injectedJavaScript =
-      `
-      var script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/rn-webview-rpc@${version}";
-      document.head.appendChild(script);
-      ${this.props.injectedJavaScript}
-     `;
+    if (injectRnRpc) {
+      props.injectedJavaScript = JSON.parse(bundle) + props.injectedJavaScript;
+    }
 
     return (
       <WebView {...props} />
@@ -40,10 +37,12 @@ export default class WebViewRpc extends React.Component {
 WebViewRpc.propTypes = {
   exposedObj: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   injectedJavaScript: PropTypes.string,
+  injectRnRpc: PropTypes.bool,
 };
 
 WebViewRpc.defaultProps = {
   exposedObj: {},
   injectedJavaScript: '',
+  injectRnRpc: true,
 };
 

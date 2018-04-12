@@ -63,5 +63,6 @@ dist/
 # IDE configuration
 .idea/
 
-# Copied package.json
+# Mangled files
 src/package.json
+src/bundle.js.html

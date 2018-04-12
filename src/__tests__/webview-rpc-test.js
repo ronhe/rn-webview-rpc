@@ -8,6 +8,7 @@ import WebViewRpc from '../webview-rpc';
 
 jest.mock('WebView', () => 'WebView');
 
+
 test('renders correctly', () => {
   const tree = renderer.create(<WebViewRpc />).toJSON();
   tree.props.injectedJavaScript = tree.props.injectedJavaScript.replace(

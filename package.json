@@ -5,9 +5,11 @@
   "main": "index.js",
   "browser": "bundle.js",
   "scripts": {
-    "test": "cp package.json src && jest src",
-    "bundle": "webpack",
-    "build": "rm -rf dist && mkdir dist && babel src -d dist && webpack && cp README.md package.json dist",
+    "jest": "jest src",
+    "mangle_src": "webpack && node jsonify.js dist/bundle.js && cp package.json dist/bundle.js.json src",
+    "test": "npm run mangle_src && jest src",
+    "mangle_dist": "cp README.md package.json dist && node jsonify.js dist/bundle.js",
+    "build": "rm -rf dist && mkdir dist && babel src -d dist && webpack && npm run mangle_dist",
     "mypublish": "npm run build && jest dist && npm publish dist"
   },
   "repository": {
@@ -53,6 +55,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "fs-extra": "^5.0.0",
     "jest": "^22.4.3",
     "react": "^16.2.0",
     "react-native": "^0.54.3",
