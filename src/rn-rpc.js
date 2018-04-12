@@ -7,7 +7,7 @@ import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
 const webEndpoint = {
   send: data => window.postMessage(data, '*'),
   addEventListener: (...args) => document.addEventListener(...args),
-  // I don't know why but addEventListener: document.addEventListener causes error
+  // Don't replace with 'document.addEventListener'. It results with an error.
 };
 
 const rnRpc = {

@@ -65,4 +65,3 @@ dist/
 
 # Mangled files
 src/package.json
-src/bundle.js.html
