@@ -1,7 +1,7 @@
 /* eslint-env node, browser */
 
-import { Comlink } from 'comlinkjs/comlink.es6';
-import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6';
+import { Comlink } from './comlinkjs/comlink.es6'; // relative import as a hack
+import { MessageChannelAdapter } from './comlinkjs/messagechanneladapter.es6'; // relative import as a hack
 
 
 const webEndpoint = {
