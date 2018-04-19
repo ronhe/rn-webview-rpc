@@ -84,7 +84,7 @@ first install `rn-webview-rpc` via NPM
 (as for the React-Native project),
 and then:
 ```javascript
-import { rnRpc } from 'rn-webview-rpc/rn-rpc';
+import rnRpc from 'rn-webview-rpc/rn-rpc';
 ```
 **Warning**: 
 To make sure that the React-Native package and the web scripts
