@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { WebView } from 'react-native';
 import PropTypes from 'prop-types';
 import './global';
@@ -8,7 +8,7 @@ import WebViewEndpoint from './webview-endpoint';
 import { version } from './package.json';
 
 
-export default class WebViewRpc extends React.Component {
+export default class WebViewRpc extends Component {
   expose(obj) {
     Comlink.expose(obj, MessageChannelAdapter.wrap(this.endpoint));
   }
