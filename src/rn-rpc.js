@@ -1,7 +1,8 @@
 /* eslint-env node, browser */
 
-import { Comlink } from './comlinkjs/comlink.es6'; // relative import as a hack
-import { MessageChannelAdapter } from './comlinkjs/messagechanneladapter.es6'; // relative import as a hack
+import './global';
+import { Comlink } from './comlinkjs/comlink.es6'; // relative import because cannot use ES6 dependencies
+import { MessageChannelAdapter } from './comlinkjs/messagechanneladapter.es6'; // relative import because cannot use ES6 dependencies
 
 
 const webEndpoint = {
@@ -11,8 +12,11 @@ const webEndpoint = {
 };
 
 const rnRpc = {
-  proxy: Comlink.proxy(MessageChannelAdapter.wrap(webEndpoint)),
+  proxy: (callPath = [], proxyInterface = {}) => (
+    Comlink.proxy(MessageChannelAdapter.wrap(webEndpoint), callPath, proxyInterface)
+  ),
   proxyValue: Comlink.proxyValue,
+  expose: obj => Comlink.expose(obj, MessageChannelAdapter.wrap(webEndpoint)),
 };
 
 

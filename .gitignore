@@ -66,3 +66,4 @@ dist/
 # Mangled files
 src/package.json
 src/comlinkjs
+src/proxy-polyfill
