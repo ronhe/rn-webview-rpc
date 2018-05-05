@@ -8,7 +8,7 @@
     "mangle_src": "cp -rf package.json node_modules/comlinkjs node_modules/proxy-polyfill src",
     "test": "npm run mangle_src && jest src",
     "mangle_dist": "cp README.md package.json dist",
-    "build": "rm -rf dist && mkdir dist && npm run mangle_src && babel src -d dist && webpack && npm run mangle_dist",
+    "build": "rm -rf dist && mkdir dist && npm run mangle_src && babel src -d dist && webpack --mode=development && npm run mangle_dist",
     "mypublish": "npm run build && jest dist && npm publish dist"
   },
   "repository": {

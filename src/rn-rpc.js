@@ -1,8 +1,8 @@
 /* eslint-env node, browser */
 
 import './global';
-import { Comlink } from './comlinkjs/comlink.es6'; // relative import because cannot use ES6 dependencies
-import { MessageChannelAdapter } from './comlinkjs/messagechanneladapter.es6'; // relative import because cannot use ES6 dependencies
+import { Comlink } from 'comlinkjs/comlink.es6'; // relative import because cannot use ES6 dependencies
+import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6'; // relative import because cannot use ES6 dependencies
 
 
 const webEndpoint = {
