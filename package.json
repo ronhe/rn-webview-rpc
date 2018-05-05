@@ -5,11 +5,15 @@
   "browser": "bundle.js",
   "scripts": {
     "jest": "jest src",
-    "mangle_src": "cp -rf package.json node_modules/comlinkjs node_modules/proxy-polyfill src",
-    "test": "npm run mangle_src && jest src",
-    "mangle_dist": "cp README.md package.json dist",
-    "build": "rm -rf dist && mkdir dist && npm run mangle_src && babel src -d dist && webpack --mode=development && npm run mangle_dist",
-    "mypublish": "npm run build && jest dist && npm publish dist"
+    "mangle-src": "cp -rf package.json src",
+    "test": "npm run mangle-src && jest src",
+    "mangle-dist": "cp README.md package.json dist",
+    "build-web": "webpack --mode=production",
+    "build-native": "cp -rf src/native src/common src/native.js dist",
+    "build-all": "npm run build-web && npm run build-native",
+    "build": "rm -rf dist && mkdir dist && npm run mangle-src && npm run build-all & npm run mangle-dist",
+    "test-dist": "cp -rf src/__tests__ dist && jest dist && rm -rf dist/__tests__",
+    "mypublish": "npm run build && npm run test-dist && npm publish dist"
   },
   "repository": {
     "type": "git",
@@ -71,6 +75,7 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "core-js": "*"
   }
 }

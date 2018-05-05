@@ -3,7 +3,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import WebViewRpc from '../webview-rpc';
+import WebViewRpc from '../native/webview-rpc';
 
 
 jest.mock('WebView', () => 'WebView');

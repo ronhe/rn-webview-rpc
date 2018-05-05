@@ -1,6 +1,6 @@
 /* global test, expect */
 
-import { MessageChannelPolyfill } from '../message-channel-polyfill';
+import { MessageChannelPolyfill } from '../common/message-channel-polyfill';
 
 
 test('send message from port1 to port2', (done) => {

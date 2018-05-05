@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: ['./src/entry'],
+  entry: ['./src/web'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'web.js',
     library: 'rnRpc',
     libraryTarget: 'umd',
   },
