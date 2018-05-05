@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>React-Native WebView RPC Example</title>
     <script>
+        const proxy = rnRpc.proxy();
         async function fireNativeAlert() {
-          await rnRpc.proxy.Alert.alert(
+          await proxy.Alert.alert(
             'What is your favorite color?',
             'We got green and blue',
             [
@@ -22,7 +23,7 @@
         }
 
         async function getNetInfo() {
-          let netInfo = await await rnRpc.proxy.NetInfo.getConnectionInfo();
+          let netInfo = await await proxy.NetInfo.getConnectionInfo();
           alert(`type: ${netInfo.type}, effectiveType: ${netInfo.effectiveType}`);
         }
 
