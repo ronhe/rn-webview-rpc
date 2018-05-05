@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <title>React-Native WebView RPC Example</title>
     <script>
-        const proxy = rnRpc.proxy();
+        // ** dirty hack **
+        function initProxy() {
+          if (typeof window.rnRpc !== 'undefined') {
+            console.log('proxy loaded');
+            window.proxy = window.rnRpc.proxy();
+          } else {
+            setTimeout(initProxy, 500);
+          }
+        }
+        initProxy();
+        // ****************
+
         async function fireNativeAlert() {
           await proxy.Alert.alert(
             'What is your favorite color?',
