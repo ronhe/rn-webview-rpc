@@ -8,12 +8,9 @@
     "mangle-src": "cp -rf package.json src",
     "test": "npm run mangle-src && jest src",
     "mangle-dist": "cp README.md package.json dist",
-    "build-web": "webpack --mode=production",
-    "build-native": "cp -rf src/native src/common src/native.js dist",
-    "build-all": "npm run build-web && npm run build-native",
-    "build": "rm -rf dist && mkdir dist && npm run mangle-src && npm run build-all & npm run mangle-dist",
-    "test-dist": "cp -rf src/__tests__ dist && jest dist && rm -rf dist/__tests__",
-    "mypublish": "npm run build && npm run test-dist && npm publish dist"
+    "webpack": "npm run mangle-src && webpack --mode=production",
+    "build": "npm test && rm -rf dist && mkdir dist && npm run webpack & npm run mangle-dist",
+    "mypublish": "npm run build && npm publish dist"
   },
   "repository": {
     "type": "git",
