@@ -14,7 +14,12 @@ export default class WebViewRpc extends Component {
   }
 
   render() {
-    const { exposedObj, injectScriptTag, ...props } = this.props;
+    const {
+      exposedObj,
+      injectScriptTag,
+      onMessage,
+      ...props
+    } = this.props;
     props.ref = (webView) => {
       this.webView = webView;
       this.endpoint = new WebViewEndpoint(webView);
@@ -32,6 +37,9 @@ export default class WebViewRpc extends Component {
         ${this.props.injectedJavaScript}
         `;
     }
+    if (onMessage) {
+      this.endpoint.addEventListener('message', onMessage);
+    }
 
     return (
       <WebView {...props} />
@@ -43,11 +51,12 @@ WebViewRpc.propTypes = {
   exposedObj: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   injectedJavaScript: PropTypes.string,
   injectScriptTag: PropTypes.bool,
+  onMessage: PropTypes.func,
 };
 
 WebViewRpc.defaultProps = {
   exposedObj: {},
   injectedJavaScript: '',
   injectScriptTag: false,
+  onMessage: undefined,
 };
-
