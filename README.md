@@ -65,15 +65,15 @@ Install `rn-webview-rpc` from NPM:
 ```
 $ npm install --save rn-webview-rpc
 ```
-Then import the `WebViewRpc` components:
+Then import the `WebViewRpc` component:
 ```javascript
 import WebViewRpc from 'rn-webview-rpc/native';
 ```
 
-### WEB End Installation
+### web End Installation
 You can either install from a CDN or from NPM.
 #### Install from NPM
-Install `rn-webview-rpc` from NPM (exacely as for the React-Native project):
+Install `rn-webview-rpc` from NPM (exactly as for the React-Native project):
 ```
 $ npm install --save rn-webview-rpc
 ```
@@ -88,22 +88,21 @@ Add a `script` tag to your HTML's `head`:
 ```
 Or let the `WebViewRpc` component do that for you, by setting the
 `injectScriptTag` prop to `true`.
-
 Either way,  the `rnRpc` object becomes available globally. 
 
 **Warning**: 
-Make sure that both ends (React-Native and WEB) use compatible versions
+Make sure that both ends (React-Native and web) use compatible versions
 of `rn-webview-rpc` by enforcing matching identical versions.
 If you choose installation from a CDN using the `injectScriptTag`,
 then it is taken care of automatically. 
 
 ## React-Native API - `WebViewRpc` 
-A React-Native component that Renders a
+A React-Native component that renders a
 [`WebView`](https://facebook.github.io/react-native/docs/webview.html)
-component, with an bi-directional RPC bridge.
+component with a bi-directional RPC bridge.
 ### Props
 #### `exposedObj`
-The object to be exposed to the WEB end.
+The object to be exposed to the web end.
 * Type: object
 * Default: `{}`
 #### `injectScriptTag`
@@ -112,7 +111,7 @@ load the `rn-webview-rpc` module to the website.
 * Type: bool
 * Default: `false`
 #### `onMessage(listener)`
-Allows an extra custom listener of 'message' events.
+Allows an extra custom listener of `'message'` events.
 * Type: function
 * Default: `undefined`
 #### `target`
@@ -145,26 +144,26 @@ A reference to the native `WebView` instance.
 
 ### Static Class Methods
 #### `proxyValue(value)`
-A wrapper function to makes sure that a parameter or return value
-is proxied, not copied.
+A wrapper function to let a parameter or a return value
+be proxied rather than copied.
 This is just a reference to
 [Comlink's `proxyValue` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyvaluevalue)
 
-## WEB API - `rnRpc`
+## Web API - `rnRpc`
 An object at the web end that provides a bi-directional RPC bridge
 to the native end.
-###`Functions`
+### `Functions`
 #### `proxy(target)`
 creates an ES6 `proxy` that sends all operations performed on that proxy
 to the native side.
-`target` argument is an object interface for proxy calls.
-It is required in browsers that do not support the ES6 `proxy`.
+`target` argument is an object interface for proxy calls, which
+is required in browsers that do not support the ES6 `proxy`.
 `proxy` returns an ES6 `proxy` object exactly like
 [Comlink's `proxy` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyendpoint)
-or a proxy object polyfill in old browsers.
+(or a proxy object polyfill in old browsers).
 #### `proxyValue`
-A wrapper function to makes sure that a parameter or return value
-is proxied, not copied.
+A wrapper function to let a parameter or a return value
+be proxied rather than copied.
 This is just a reference to
 [Comlink's `proxyValue` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyvaluevalue)
 #### `expose(obj)`
@@ -202,7 +201,7 @@ The major pain coding this package was helping the
 delightful Comlink library to work in the native environment (and old browsers).
 Comlink is designed for web workers environment, and
 unfortunately the native JavaScript engine is more limited.
-1. WebView's messaging interface supports only string messages.
+1. `WebView`'s messaging interface supports only string messages.
 Thankfully, solving this issue was easy,
 since the Comlink library already includes a
 [`MessageChannelAdapter`](https://github.com/GoogleChromeLabs/comlink/blob/master/messagechanneladapter.ts),
@@ -213,8 +212,8 @@ What remained to be done is to translate the
 2. The ES6 `proxy` object is unsupported natively. This was solved using the
 [Proxy Polyfill](https://github.com/GoogleChrome/proxy-polyfill)
 (with some 
-[limitations](https://github.com/ronhe/rn-webview-rpc##limitations)).
-However, to allow `proxy` to work in React-Native, a few changes
+[limitations](https://github.com/ronhe/rn-webview-rpc#limitations)).
+Moreover, to allow `proxy` to work in React-Native, a few changes
 were required in
 [Comlink](https://github.com/GoogleChromeLabs/comlink). 
 Untill the relevant
@@ -228,5 +227,5 @@ to address this problem I had to write pretty
 simple degenerated polyfills.
 
 4. More polyfills: The `Object` and `ArrayBuffer` behave slightly
-inconsistently in different environments. Hence, they are being
-overridden by a polyfill when necessary.
+inconsistently in different environments. Hence, I have them
+overridden by polyfills when necessary.
