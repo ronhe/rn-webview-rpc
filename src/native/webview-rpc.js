@@ -13,11 +13,16 @@ export default class WebViewRpc extends Component {
     Comlink.expose(obj, MessageChannelAdapter.wrap(this.endpoint));
   }
 
+  _proxy(target = {}) {
+    Comlink.proxy(MessageChannelAdapter.wrap(this.endpoint), target);
+  }
+
   render() {
     const {
       exposedObj,
       injectScriptTag,
       onMessage,
+      target,
       ...props
     } = this.props;
     props.ref = (webView) => {
@@ -40,6 +45,7 @@ export default class WebViewRpc extends Component {
     if (onMessage) {
       this.endpoint.addEventListener('message', onMessage);
     }
+    this.proxy = this._proxy(target);
 
     return (
       <WebView {...props} />
@@ -52,6 +58,7 @@ WebViewRpc.propTypes = {
   injectedJavaScript: PropTypes.string,
   injectScriptTag: PropTypes.bool,
   onMessage: PropTypes.func,
+  target: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 WebViewRpc.defaultProps = {
@@ -59,4 +66,5 @@ WebViewRpc.defaultProps = {
   injectedJavaScript: '',
   injectScriptTag: false,
   onMessage: undefined,
+  target: {},
 };
