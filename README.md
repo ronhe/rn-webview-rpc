@@ -226,3 +226,7 @@ is merged, `rn-webview-rpc` uses a
 in the native environment. Since no polyfills are available, 
 to address this problem I had to write pretty
 simple degenerated polyfills.
+
+4. More polyfills: The `Object` and `ArrayBuffer` behave slightly
+inconsistently in different environments. Hence, they are being
+overridden by a polyfill when necessary.
