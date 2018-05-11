@@ -12,8 +12,8 @@ const webEndpoint = {
 };
 
 const rnRpc = {
-  proxy: (callPath = [], proxyInterface = {}) => (
-    Comlink.proxy(MessageChannelAdapter.wrap(webEndpoint), callPath, proxyInterface)
+  proxy: (target = {}) => (
+    Comlink.proxy(MessageChannelAdapter.wrap(webEndpoint), target)
   ),
   proxyValue: Comlink.proxyValue,
   expose: obj => Comlink.expose(obj, MessageChannelAdapter.wrap(webEndpoint)),
