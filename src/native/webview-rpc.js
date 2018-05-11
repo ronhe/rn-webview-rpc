@@ -33,6 +33,10 @@ export default class WebViewRpc extends Component {
       this.webView = webView;
       this.endpoint = new WebViewEndpoint(webView);
       this.expose(exposedObj);
+      if (onMessage) {
+        this.endpoint.addEventListener('message', onMessage);
+      }
+      this.proxy = this._proxy(target);
     };
     props.onMessage = (msg) => {
       this.endpoint.onMessage(msg);
@@ -46,10 +50,6 @@ export default class WebViewRpc extends Component {
         ${this.props.injectedJavaScript}
         `;
     }
-    if (onMessage) {
-      this.endpoint.addEventListener('message', onMessage);
-    }
-    this.proxy = this._proxy(target);
 
     return (
       <WebView {...props} />
