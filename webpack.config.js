@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    rnRpc: './src/web',
-    WebViewRpc: './src/native',
+    rnRpc: './src/web', // hack for AMD: npm script will rename output file to web.js after webpacking
+    native: './src/native',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
