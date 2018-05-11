@@ -1,6 +1,6 @@
 {
   "name": "rn-webview-rpc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Adding RPC capabilities to the React Native WebView component",
   "browser": "bundle.js",
   "scripts": {
