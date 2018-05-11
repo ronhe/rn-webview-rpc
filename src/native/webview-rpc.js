@@ -48,6 +48,6 @@ WebViewRpc.propTypes = {
 WebViewRpc.defaultProps = {
   exposedObj: {},
   injectedJavaScript: '',
-  injectScriptTag: true,
+  injectScriptTag: false,
 };
 
