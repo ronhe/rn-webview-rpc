@@ -2,12 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <WebView
-  injectedJavaScript="
-        var script = document.createElement(\\"script\\");
-        script.src = \\"https://cdn.jsdelivr.net/npm/rn-webview-rpc\\";
-        document.head.appendChild(script);
-        
-        "
+  injectedJavaScript=""
   onMessage={[Function]}
 />
 `;
