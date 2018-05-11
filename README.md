@@ -4,12 +4,12 @@
 [![Build Status](https://travis-ci.org/ronhe/rn-webview-rpc.svg?branch=master)](https://travis-ci.org/ronhe/rn-webview-rpc)
 
 RN-WebView-RPC's goal is to allow calls to native API from a web
-application that runs inside a WebView component.
+application that runs inside a `WebView` component, and vice versa.
 It can be used as a bridge between the native and the web
 parts of hybrid apps, for example,
-asking for geo-location permissions.
+requesting native geo-location permissions from withing a `WebView`.
 
-RN-WebView-RPC wraps the built-in
+RN-WebView-RPC integrates the built-in
 [WebView](https://facebook.github.io/react-native/docs/webview.html)
 component together with the useful
 [Comlink](https://github.com/GoogleChromeLabs/comlink)
@@ -20,7 +20,7 @@ library into an easy-to-use package.
 
 import React from 'react';
 import { View, Alert } from 'react-native';
-import WebViewRpc from 'rn-webview-rpc/webview-rpc';
+import WebViewRpc from 'rn-webview-rpc/native';
 import html from './index.html';
 
 export default class App extends React.Component {
@@ -31,6 +31,7 @@ export default class App extends React.Component {
           style={{ marginTop: 0, flex: 1 }}
           source={html}
           exposedObj={{ Alert }}
+          injectScriptTag
         />
       </View>
     );
@@ -41,7 +42,8 @@ export default class App extends React.Component {
 ```javascript
 // index.html
 
-await rnRpc.proxy.Alert.alert(
+const proxy = rnRpc.proxy();
+await proxy.Alert.alert(
     'What is your favorite color?',
     'We got green and blue',
     [
@@ -58,83 +60,129 @@ function setBgColor(color) {
 ```
 
 ## Installation
-For the React-Native project, install `rn-webview-rpc` via NPM:
+### React-Native End Installation
+Install `rn-webview-rpc` from NPM:
 ```
 $ npm install --save rn-webview-rpc
 ```
-Then:
+Then import the `WebViewRpc` components:
 ```javascript
-import WebViewRpc from 'rn-webview-rpc/webview-rpc';
+import WebViewRpc from 'rn-webview-rpc/native';
 ```
 
-The `WebViewRpc`, by default, injects the required `script` tag
-to your web page's HTML.
-As a result, the `rnRpc` object becomes available globally. 
-In some use cases it's better to include it manually.
-To do that, set the `WebViewRpc`'s `injectScriptTag`
-property to `false`.
-Then you have 2 alternatives including the `rnRpc` object
-to the website:
-1. Add a `script` tag to your HTML's `head`:
+### WEB End Installation
+You can either install from a CDN or from NPM.
+#### Install from NPM
+Install `rn-webview-rpc` from NPM (exacely as for the React-Native project):
+```
+$ npm install --save rn-webview-rpc
+```
+Then import the `rnRpc` object:
+```javascript
+import rnRpc from 'rn-webview-rpc/web';
+```
+### Install from a CDN
+Add a `script` tag to your HTML's `head`:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/rn-webview-rpc@0.10.0></script>
+<script src="https://cdn.jsdelivr.net/npm/rn-webview-rpc@1.2.2></script>
 ```
-2. If you use a web bundler (such as webpack),
-first install `rn-webview-rpc` via NPM
-(as for the React-Native project),
-and then:
-```javascript
-import rnRpc from 'rn-webview-rpc/rn-rpc';
-```
-**Warning**: 
-To make sure that the React-Native package and the web scripts
-are compatible, it's recommended to enforce
-matching identical versions on both ends.  
+Or let the `WebViewRpc` component do that for you, by setting the
+`injectScriptTag` prop to `true`.
 
-## API
-### `WebViewRpc`
+Either way,  the `rnRpc` object becomes available globally. 
+
+**Warning**: 
+Make sure that both ends (React-Native and WEB) use compatible versions
+of `rn-webview-rpc` by enforcing matching identical versions.
+If you choose installation from a CDN using the `injectScriptTag`,
+then it is taken care of automatically. 
+
+## React-Native API - `WebViewRpc` 
 A React-Native component that Renders a
 [`WebView`](https://facebook.github.io/react-native/docs/webview.html)
-component, while exposing a native object to the website.
-#### Props
-##### `exposedObj`
-The object to be exposed to the website.
+component, with an bi-directional RPC bridge.
+### Props
+#### `exposedObj`
+The object to be exposed to the WEB end.
 * Type: object
 * Default: `{}`
-##### `injectScriptTag`
+#### `injectScriptTag`
 Controls whether to inject a `script` tag to
 load the `rn-webview-rpc` module to the website.
 * Type: bool
-* Default: `true`
+* Default: `false`
+#### `onMessage(listener)`
+Allows an extra custom listener of 'message' events.
+* Type: function
+* Default: `undefined`
+#### `target`
+An object interface for proxy calls.
+It is required if you intend to invoke calls from native end to the web end
+(using the `proxy` attribute). 
+* Type: object
+* Default: `{}`
 
 *The rest of the props are being forwarded to the native
-`WebView` component.* 
+`WebView` component.*
 
-##### `webView`
-A reference to the native `WebView` node.
-Usage:
+### Instance Attributes
+*Hint*: A React class component instance is accessible using the `ref` prop:
 ```javascript
 <WebViewRpc
     ref={(ref) => {
-      this.webView = ref.webView;
+      this.webViewRpc = ref;
     }}
 />
 ```
+#### `proxy`
+an ES6 `proxy` polyfill that sends all operations performed on that proxy
+to the native side. It is similar to
+[Comlink's `proxy` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyendpoint)
+but can only be called within the interface defined by the `target` prop.
 
-### `rnRpc`
-An object at the web end that allows remote calls
-to the native app.
-####`Properties`
-##### `proxy`
-An ES6 `proxy` that sends all operations performed on that proxy
-to the native side.
-This is the object that is returned by 
-[Comlink's `proxy` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyendpoint).
-##### `proxyValue`
+#### `webView`
+A reference to the native `WebView` instance.
+
+### Static Class Methods
+#### `proxyValue(value)`
 A wrapper function to makes sure that a parameter or return value
 is proxied, not copied.
 This is just a reference to
 [Comlink's `proxyValue` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyvaluevalue)
+
+## WEB API - `rnRpc`
+An object at the web end that provides a bi-directional RPC bridge
+to the native end.
+###`Functions`
+#### `proxy(target)`
+creates an ES6 `proxy` that sends all operations performed on that proxy
+to the native side.
+`target` argument is an object interface for proxy calls.
+It is required in browsers that do not support the ES6 `proxy`.
+`proxy` returns an ES6 `proxy` object exactly like
+[Comlink's `proxy` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyendpoint)
+or a proxy object polyfill in old browsers.
+#### `proxyValue`
+A wrapper function to makes sure that a parameter or return value
+is proxied, not copied.
+This is just a reference to
+[Comlink's `proxyValue` function](https://github.com/GoogleChromeLabs/comlink#comlinkproxyvaluevalue)
+#### `expose(obj)`
+Exposes an object to the native end.
+It just wraps
+[Comlink's `expose` function](https://github.com/GoogleChromeLabs/comlink#comlinkexposeobj-endpoint)
+. 
+
+## Limitations
+Exposing an object in the native side requires providing a
+`target` interface at creation time.
+This is because the JavaScript engine 
+[JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore)
+used by React-Native does not support the ES6 `proxy` object,
+and its polyfill
+[proxy-polyfill](https://github.com/GoogleChrome/proxy-polyfill)
+is limited.
+Same applies for the web end for old browsers.
 
 ## Example
 See the [example folder](https://github.com/ronhe/rn-webview-rpc/tree/master/example).
@@ -147,24 +195,13 @@ The simplest way to run it is:
 3. Play it on your smartphone (Android/iOS) using the
 [Expo Client](https://expo.io/tools#client).
 
-## Limitations
-As for version 0.X.Y, RPC is supported in only one direction:
-exposing an object in the native side, and using it from the
-web side. This is because the JavaScript engine 
-[JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore)
-used by React-Native does not support the ES6 `proxy` object,
-and its polyfill
-[proxy-polyfill](https://github.com/GoogleChrome/proxy-polyfill)
-is limited.
-I will try to address this limitation for version 1.0.0.
-
 ## Under the Hood
-> Reading this section is most definitely optionally.
+> Reading this section is most definitely optionally :)
 
 The major pain coding this package was helping the
-delightful Comlink library to work in the native environment.
+delightful Comlink library to work in the native environment (and old browsers).
 Comlink is designed for web workers environment, and
-unfortunately the native JavaScript engine is more limited. 
+unfortunately the native JavaScript engine is more limited.
 1. WebView's messaging interface supports only string messages.
 Thankfully, solving this issue was easy,
 since the Comlink library already includes a
@@ -173,22 +210,19 @@ to support string based message channels, such as WebRTC.
 What remained to be done is to translate the
 `postMessage`/`onMessage` WebView's message API to a
 `send`/`addEventListener` endpoint.
-2. The ES6 `proxy` object is unsupported natively. Using the
+2. The ES6 `proxy` object is unsupported natively. This was solved using the
 [Proxy Polyfill](https://github.com/GoogleChrome/proxy-polyfill)
-solves this issue, however,
-with the limitations mentioned
-[above](https://github.com/ronhe/rn-webview-rpc##limitations).
-Luckily, the web-to-native direction is usually the more
-useful one.
+(with some 
+[limitations](https://github.com/ronhe/rn-webview-rpc##limitations)).
+However, to allow `proxy` to work in React-Native, a few changes
+were required in
+[Comlink](https://github.com/GoogleChromeLabs/comlink). 
+Untill the relevant
+[PR](https://github.com/GoogleChromeLabs/comlink/pull/113)
+is merged, `rn-webview-rpc` uses a
+[fork](https://github.com/ronhe/comlink) dependency.
+
 3. The `MessageChannel` and `MessagePort` objects are missing
 in the native environment. Since no polyfills are available, 
 to address this problem I had to write pretty
 simple degenerated polyfills.
-
-Lastly, currently Comlink is provided either in ES6 or in UMD.
-At the moment, ES6 dependencies are not supported by
-[Create React App](https://github.com/facebook/create-react-app)
-([read about it here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#npm-run-build-fails-to-minify)).
-Also, UMD modules seems not to play nicely with WebPack.
-Hence, for now, I chose to copy Comlink to RN-WebView-RPC's
-source folder, so it can be distributed in ES5.
