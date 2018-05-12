@@ -14,7 +14,7 @@ export default class WebViewRpc extends Component {
   }
 
   _proxy(target = {}) {
-    Comlink.proxy(MessageChannelAdapter.wrap(this.endpoint), target);
+    return Comlink.proxy(MessageChannelAdapter.wrap(this.endpoint), target);
   }
 
   static proxyValue(obj) {

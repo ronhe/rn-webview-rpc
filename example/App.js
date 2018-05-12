@@ -34,10 +34,10 @@ export default class App extends React.Component {
             Set WebView's background:
           </Text>
           <Picker
-            selectedValue={'white'}
+            selectedValue="white"
             style={{ height: 50, width: 150 }}
             onValueChange={(itemValue, itemIndex) => {
-                this.proxy.document.body.style.backgroundColor = itemValue;
+                this.webViewRpc.proxy.document.body.style.backgroundColor = itemValue;
             }}
           >
             <Picker.Item label="white" value="white" />
@@ -53,12 +53,8 @@ export default class App extends React.Component {
             source={html}
             exposedObj={{ Alert, NetInfo }}
             injectScriptTag
-            ref={(ref) => {
-              this.webViewRpc = ref;
-              if ('proxy' in this.webViewRpc) {
-                this.proxy = this.webViewRpc.proxy(target);
-              }
-            }}
+            ref={(ref) => { this.webViewRpc = ref; console.log(ref); }}
+            target={target}
           />
         </View>
       </View>
