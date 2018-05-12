@@ -70,6 +70,17 @@ Then import the `WebViewRpc` component:
 import WebViewRpc from 'rn-webview-rpc/native';
 ```
 
+**Note**: If you encounter this error:
+> Objects are not valid as a React child... 
+
+<img alt="error screenshot" src="docs/symbol-error.png" width="320">
+
+then you should add
+```javascript
+import 'core-js/es6/symbol';
+```
+at the top of your app's JavaScript entry point. 
+
 ### web End Installation
 You can either install from a CDN or from NPM.
 #### Install from NPM
