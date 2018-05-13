@@ -53,7 +53,7 @@ export default class App extends React.Component {
             source={html}
             exposedObj={{ Alert, NetInfo }}
             injectScriptTag
-            ref={(ref) => { this.webViewRpc = ref; console.log(ref); }}
+            ref={(ref) => { this.webViewRpc = ref; }}
             target={target}
           />
         </View>
