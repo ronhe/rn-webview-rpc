@@ -26,25 +26,30 @@ export default class App extends React.Component {
         padding: 10,
       }}
       >
-        <View style={{ height: '50%', alignItems: 'center' }}>
+        {/* Native */}
+        <View style={{ height: '50%' }}>
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
             Native
           </Text>
-          <Text style={{  }}>
-            Set WebView's background:
-          </Text>
-          <Picker
-            selectedValue="white"
-            style={{ height: 50, width: 150 }}
-            onValueChange={(itemValue, itemIndex) => {
-                this.webViewRpc.proxy.document.body.style.backgroundColor = itemValue;
-            }}
-          >
-            <Picker.Item label="white" value="white" />
-            <Picker.Item label="yellow" value="yellow" />
-            <Picker.Item label="pink" value="pink" />
-          </Picker>
+          <View style={{ alignItems: 'center' }}>
+            <Text>
+              Set the WebView's background:
+            </Text>
+            <Picker
+              selectedValue="white"
+              style={{ height: 50, width: 150 }}
+              onValueChange={(itemValue, itemIndex) => {
+                  this.webViewRpc.proxy.document.body.style.backgroundColor = itemValue;
+              }}
+            >
+              <Picker.Item label="White" value="white" />
+              <Picker.Item label="Yellow" value="yellow" />
+              <Picker.Item label="Pink" value="pink" />
+            </Picker>
+          </View>
         </View>
+
+        {/* WebView */}
         <View style={{ flex: 1 }}>
           <Text style={{ fontSize: 20, fontWeight: 'bold'}}>
             WebView
