@@ -30,13 +30,15 @@ export default class WebViewRpc extends Component {
       ...props
     } = this.props;
     props.ref = (webView) => {
-      this.webView = webView;
-      this.endpoint = new WebViewEndpoint(webView);
-      this.expose(exposedObj);
-      if (onMessage) {
-        this.endpoint.addEventListener('message', onMessage);
+      if (webView !== this.webView) {
+        this.webView = webView;
+        this.endpoint = new WebViewEndpoint(webView);
+        this.expose(exposedObj);
+        if (onMessage) {
+          this.endpoint.addEventListener('message', onMessage);
+        }
+        this.proxy = this._proxy(target);
       }
-      this.proxy = this._proxy(target);
     };
     props.onMessage = (msg) => {
       this.endpoint.onMessage(msg);
