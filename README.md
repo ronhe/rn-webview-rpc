@@ -199,10 +199,8 @@ See the [example folder](https://github.com/ronhe/rn-webview-rpc/tree/master/exa
 It is a very simple React-Native app bootstrapped with the
 [Create React Native App](https://github.com/react-community/create-react-native-app)
 tool.
-You can play with it with using Expo Snack:
-
-<div data-snack-id="@git/github.com/ronhe/rn-webview-rpc:example" data-snack-platform="ios" data-snack-preview="true" data-snack-theme="light" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.08);border-radius:4px;height:505px;width:100%"></div>
-<script async src="https://snack.expo.io/embed.js"></script>
+You can play with it online thanks to
+[Expo Snack](https://snack.expo.io/@git/github.com/ronhe/rn-webview-rpc:example).
 
 ## Under the Hood
 > Reading this section is most definitely optionally :)
