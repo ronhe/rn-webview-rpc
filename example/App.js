@@ -16,6 +16,10 @@ const target = {
 
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { color: 'white' };
+  }
   render() {
     return (
       <View style={{
@@ -36,10 +40,11 @@ export default class App extends React.Component {
               Set the WebView's background:
             </Text>
             <Picker
-              selectedValue="white"
+              selectedValue={this.state.color}
               style={{ height: 30, width: 150, margin: 10 }}
               onValueChange={(itemValue, itemIndex) => {
                   this.webViewRpc.proxy.document.body.style.backgroundColor = itemValue;
+                  this.setState({ color: itemValue });
               }}
             >
               <Picker.Item label="White" value="white" />
