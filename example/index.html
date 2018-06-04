@@ -49,20 +49,45 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            font-size: 5vw;
+            margin: 1vw;
+        }
+        .button {
+            font-size: 5vw;
+            margin: 1vw;
+            width: 100%;
+        }
+        .row-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+        .row-element {
+            width: 50%;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <button onclick="fireNativeAlert()" style="font-size: 26px;">
+        <button onclick="fireNativeAlert()" class="button">
             Fire Native Alert
         </button>
         <div class="line-break"></div>
-        <button onclick="getNetInfo()" style="font-size: 26px; margin:15px;">
+        <button onclick="getNetInfo()" class="button">
             Get Net Info
         </button>
-        Net type: <input id="net-type" disabled/>
-        Net effective type: <input id="net-eff-type" disabled/>
+        <div class="row-container">
+            <div class="row-element">
+                Net type:
+            </div>
+            <input id="net-type" disabled class="button row-element"/>
+        </div>
+        <div class="row-container">
+            <div class="row-element">
+                Net effective type:
+            </div>
+            <input id="net-eff-type" disabled class="button row-element"/>
+        </div>
     </div>
 </body>
 </html>

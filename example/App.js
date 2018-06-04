@@ -32,12 +32,12 @@ export default class App extends React.Component {
             Native
           </Text>
           <View style={{ alignItems: 'center' }}>
-            <Text>
+            <Text style={{ fontSize: 17 }}>
               Set the WebView's background:
             </Text>
             <Picker
               selectedValue="white"
-              style={{ height: 50, width: 150 }}
+              style={{ height: 30, width: 150, margin: 10 }}
               onValueChange={(itemValue, itemIndex) => {
                   this.webViewRpc.proxy.document.body.style.backgroundColor = itemValue;
               }}
