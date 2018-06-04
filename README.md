@@ -81,7 +81,7 @@ import 'core-js/es6/symbol';
 ```
 at the top of your app's JavaScript entry point. 
 
-### web End Installation
+### Web End Installation
 You can either install from a CDN or from NPM.
 #### Install from NPM
 Install `rn-webview-rpc` from NPM (exactly as for the React-Native project):
@@ -196,14 +196,13 @@ Same applies for the web end for old browsers.
 
 ## Example
 See the [example folder](https://github.com/ronhe/rn-webview-rpc/tree/master/example).
-It is a very simple React-Native app created using the
+It is a very simple React-Native app bootstrapped with the
 [Create React Native App](https://github.com/react-community/create-react-native-app)
 tool.
-The simplest way to run it is:
-1. Download the example folder.
-2. Serve it with the [Expo XDE](https://expo.io/tools#xde).
-3. Play it on your smartphone (Android/iOS) using the
-[Expo Client](https://expo.io/tools#client).
+You can play with it with using Expo Snack:
+
+<div data-snack-id="@git/github.com/ronhe/rn-webview-rpc:example" data-snack-platform="ios" data-snack-preview="true" data-snack-theme="light" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.08);border-radius:4px;height:505px;width:100%"></div>
+<script async src="https://snack.expo.io/embed.js"></script>
 
 ## Under the Hood
 > Reading this section is most definitely optionally :)
