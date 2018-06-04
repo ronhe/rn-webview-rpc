@@ -200,7 +200,8 @@ It is a very simple React-Native app bootstrapped with the
 [Create React Native App](https://github.com/react-community/create-react-native-app)
 tool.
 You can play with it online thanks to
-[Expo Snack](https://snack.expo.io/@git/github.com/ronhe/rn-webview-rpc:example).
+[Expo Snack](https://snack.expo.io/@git/github.com/ronhe/rn-webview-rpc:example)
+(If you're asked to add packages to the *package.json* - accept the offer).
 
 ## Under the Hood
 > Reading this section is most definitely optionally :)
