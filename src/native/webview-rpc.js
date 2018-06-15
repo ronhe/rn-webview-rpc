@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { WebView } from 'react-native';
 import PropTypes from 'prop-types';
 import '../common/global';
-import { Comlink } from 'comlinkjs/comlink.es6'; // eslint-disable-line import/first
-import { MessageChannelAdapter } from 'comlinkjs/messagechanneladapter.es6'; // eslint-disable-line import/first
+import { expose, proxy, proxyValue } from 'comlinkjs/comlink'; // eslint-disable-line import/first
+import { wrap } from 'comlinkjs/messagechanneladapter'; // eslint-disable-line import/first
 import WebViewEndpoint from './webview-endpoint';
 import { version } from '../package.json';
 
 
 export default class WebViewRpc extends Component {
   expose(obj) {
-    Comlink.expose(obj, MessageChannelAdapter.wrap(this.endpoint));
+    expose(obj, wrap(this.endpoint));
   }
 
   _proxy(target = {}) {
-    return Comlink.proxy(MessageChannelAdapter.wrap(this.endpoint), target);
+    return proxy(wrap(this.endpoint), target);
   }
 
   static proxyValue(obj) {
-    return Comlink.proxyValue(obj);
+    return proxyValue(obj);
   }
 
   render() {
