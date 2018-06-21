@@ -15,6 +15,7 @@
       "polyfill": true,
       "regenerator": true,
       "moduleName": "babel-runtime"
-    }]
+    }],
+    "transform-class-properties"
   ]
 }

@@ -21,6 +21,10 @@ export default class WebViewRpc extends Component {
     return proxyValue(obj);
   }
 
+  onMessage = (msg) => {
+    return this.endpoint.onMessage(msg);
+  }
+
   render() {
     const {
       exposedObj,
@@ -40,9 +44,7 @@ export default class WebViewRpc extends Component {
         this.proxy = this._proxy(target);
       }
     };
-    props.onMessage = (msg) => {
-      this.endpoint.onMessage(msg);
-    };
+    props.onMessage = this.onMessage;
     if (injectScriptTag) {
       props.injectedJavaScript =
         `
