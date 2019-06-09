@@ -9,7 +9,7 @@
     "test": "npm run mangle-src && jest src",
     "mangle-dist": "cp README.md package.json dist && mv dist/rnRpc.js dist/web.js",
     "webpack": "npm run mangle-src && webpack --mode=production",
-    "build": "rm -rf dist && mkdir dist && npm run webpack & npm run mangle-dist",
+    "build": "npm test && rm -rf dist && mkdir dist && npm run webpack & npm run mangle-dist",
     "mypublish": "npm run build && npm publish dist"
   },
   "repository": {
@@ -54,6 +54,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-3": "^7.0.0",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
