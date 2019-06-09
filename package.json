@@ -9,7 +9,7 @@
     "test": "npm run mangle-src && jest src",
     "mangle-dist": "cp README.md package.json dist && mv dist/rnRpc.js dist/web.js",
     "webpack": "npm run mangle-src && webpack --mode=production",
-    "build": "npm test && rm -rf dist && mkdir dist && npm run webpack & npm run mangle-dist",
+    "build": "rm -rf dist && mkdir dist && npm run webpack & npm run mangle-dist",
     "mypublish": "npm run build && npm publish dist"
   },
   "repository": {
