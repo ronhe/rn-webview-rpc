@@ -10,6 +10,7 @@ module.exports = {
     filename: '[name].js',
     library: '[name]',
     libraryTarget: 'umd',
+    libraryExport: 'default',
   },
   externals: [
     'react',

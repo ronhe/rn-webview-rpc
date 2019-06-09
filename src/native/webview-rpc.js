@@ -28,7 +28,7 @@ export default class WebViewRpc extends Component {
 
   onMessage = (msg) => {
     return this.endpoint.onMessage(msg);
-  }
+  };
 
   render() {
     const {
