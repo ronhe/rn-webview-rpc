@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Alert, NetInfo, Picker } from 'react-native';
 import WebViewRpc from 'rn-webview-rpc/native';
-import html from './index.html';
+import html from './index.html.js';
 
 
 const target = {
@@ -60,7 +60,7 @@ export default class App extends React.Component {
             WebView
           </Text>
           <WebViewRpc
-            source={html}
+            source={{ html }}
             exposedObj={{ Alert, NetInfo }}
             injectScriptTag
             ref={(ref) => { this.webViewRpc = ref; }}
