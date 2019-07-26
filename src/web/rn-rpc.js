@@ -6,7 +6,7 @@ import { wrap } from 'comlinkjs/messagechanneladapter'; // eslint-disable-line i
 
 
 const webEndpoint = {
-  send: data => window.postMessage(data, '*'),
+  send: data => window.ReactNativeWebView.postMessage(data),
   addEventListener: (...args) => document.addEventListener(...args),
   // Don't replace with 'document.addEventListener'. It results with an error.
 };
