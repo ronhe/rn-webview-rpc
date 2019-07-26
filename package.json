@@ -23,7 +23,7 @@
       "proxy-polyfill/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(react-native|comlinkjs)/)"
+      "node_modules/(?!(react-native|comlinkjs|react-native-webview)/)"
     ]
   },
   "keywords": [
