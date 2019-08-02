@@ -237,6 +237,7 @@ Same applies for the web end for old browsers.
 
 ## Example
 See the [example directory](https://github.com/ronhe/rn-webview-rpc/tree/master/example).
+
 <img alt="example gif" src="docs/example.gif" width="320">
 
 
