@@ -237,9 +237,8 @@ Same applies for the web end for old browsers.
 
 ## Example
 See the [example directory](https://github.com/ronhe/rn-webview-rpc/tree/master/example).
-<video controls="false" autoplay="autoplay">
-    <source src="example/example.webm" type="video/webm" />
-</video> 
+<img alt="example gif" src="docs/example.gif" width="320">
+
 
 ## Under the Hood
 > Reading this section is most definitely optionally :)
