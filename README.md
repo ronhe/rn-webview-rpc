@@ -236,13 +236,10 @@ is limited.
 Same applies for the web end for old browsers.
 
 ## Example
-See the [example folder](https://github.com/ronhe/rn-webview-rpc/tree/master/example).
-It is a very simple React-Native app bootstrapped with the
-[Create React Native App](https://github.com/react-community/create-react-native-app)
-tool.
-You can play with it online thanks to
-[Expo Snack](https://snack.expo.io/@git/github.com/ronhe/rn-webview-rpc:example)
-(If you're asked to add packages to the *package.json* - accept the offer).
+See the [example directory](https://github.com/ronhe/rn-webview-rpc/tree/master/example).
+<video controls="false" autoplay="autoplay">
+    <source src="example/example.webm" type="video/webm" />
+</video> 
 
 ## Under the Hood
 > Reading this section is most definitely optionally :)
