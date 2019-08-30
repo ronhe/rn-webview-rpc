@@ -3,7 +3,7 @@ This is a very simple React-Native app bootstrapped with the
 [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/)
 tool.
 
-<img alt="example gif" src="docs/example.gif" width="320">
+<img alt="example gif" src=""https://github.com/ronhe/rn-webview-rpc/blob/master/docs/example.gif"" width="320">
 
 # Running in Expo Snack
 This is by far the fastest way to run the example :)
