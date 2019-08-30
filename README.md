@@ -16,7 +16,7 @@ component together with Google's
 library into an easy-to-use package.
 
 For example, the snippet below allows opening a native alert that lets 
-the user to choose the background color of the html web page.
+the user to choose the background color of an html web page.
 
 ```javascript
 // App.js
@@ -88,7 +88,7 @@ import WebViewRpc from 'rn-webview-rpc/native';
 
 <img alt="error screenshot" src="docs/symbol-error.png" width="320">
 
-then you should try adding
+then you should try adding the following imports
 ```javascript
 import 'core-js/es6/map';
 import 'core-js/es6/symbol';
@@ -98,7 +98,7 @@ See [this thread](https://github.com/facebook/react-native/issues/18542)
 for more info. 
 
 ### Web End Installation
-You can either install from a CDN or from NPM.
+You can either install from NPM or from a CDN.
 
 #### Install from NPM
 Install `rn-webview-rpc` from NPM (exactly as for the React-Native project):
@@ -111,7 +111,7 @@ import rnRpc from 'rn-webview-rpc/web';
 ```
 #### Install from a CDN
 ##### Install from a CDN automatically
-Let the React-Native `WebViewRpc` inject an HTML script tag to the website,
+Let the React-Native's `WebViewRpc` inject an HTML script tag to the website,
 by setting the `injectScriptTag` prop to `true`:
 ```javascript
 <WebViewRpc
@@ -123,7 +123,7 @@ by setting the `injectScriptTag` prop to `true`:
 ##### Install from a CDN manually
 Add a `script` tag to your HTML's `head`:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/rn-webview-rpc@2.0.0-alpha.1></script>
+<script src="https://cdn.jsdelivr.net/npm/rn-webview-rpc@2.0.0></script>
 ```
 
 Either way (after a manual or automatic installation) the `rnRpc` object
@@ -161,6 +161,9 @@ Allows an extra custom listener to `message` events
 RPC functionality).
 * Type: function
 * Default: `undefined`
+
+In most cases, this prop should not be used.
+
 #### `target`
 An interface object for proxy calls.
 It is required for invoking calls from the React-Native end to the web end

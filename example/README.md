@@ -3,6 +3,14 @@ This is a very simple React-Native app bootstrapped with the
 [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/)
 tool.
 
+<img alt="example gif" src="docs/example.gif" width="320">
+
+# Running in Expo Snack
+This is by far the fastest way to run the example :)
+
+[Expo Snack](https://snack.expo.io/@git/github.com/ronhe/rn-webview-rpc:example)
+
+# Running on your PC
 ## Prequesits
 1. Expo CLI. You can install it from NPM:
 ```bash
@@ -21,9 +29,3 @@ example$ npm install
 ```bash
 example$ expo start
 ```
-
-
-**Note:** It should be simpler to run the example app online
-using [Expo Snack](https://snack.expo.io/@git/github.com/ronhe/rn-webview-rpc:example).
-However, this doesn't always work for me, so I can't
-recommend it.
