@@ -1,5 +1,8 @@
 /* global __DEV__ */
 
+import { rnRpcEventType } from '../common/common';
+
+
 export default class WebViewEndpoint {
   constructor(webView) {
     this.listeners = [];
@@ -10,7 +13,9 @@ export default class WebViewEndpoint {
     if (__DEV__) {
       console.log(`Sending message ${data}`);
     }
-    return this.webView.postMessage(data);
+    return this.webView.injectJavaScript(`
+      document.dispatchEvent(new CustomEvent(${rnRpcEventType}, { detail: ${data} }));
+    `);
   }
 
   addEventListener(type, listener) {
