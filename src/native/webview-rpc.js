@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-// TODO: Use external 'react-native-webview', since WebView will be extracted
-//  from 'react-native' in future releases.
-//  See https://github.com/react-native-community/react-native-webview.
-//  Keep in mind that it would break the Expo example.
-//  Moreover, the postMessage api is also going to be removed :(
-import { WebView } from 'react-native';
+import { WebView } from 'react-native-webview';
 import PropTypes from 'prop-types';
 import '../common/global';
 import { expose, proxy, proxyValue } from 'comlinkjs/comlink'; // eslint-disable-line import/first

@@ -18,6 +18,3 @@ yarn-error.log*
 
 # IDE configuration
 .idea/
-
-# Mine
-index.html.js

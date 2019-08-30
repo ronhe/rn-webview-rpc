@@ -15,6 +15,7 @@ module.exports = {
   externals: [
     'react',
     'react-native',
+    'react-native-webview'
   ],
   module: {
     rules: [

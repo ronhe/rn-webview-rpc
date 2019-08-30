@@ -19,6 +19,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { color: 'white' };
+    // console.log(`__DEV__ = ${__DEV__}`);
   }
   render() {
     return (

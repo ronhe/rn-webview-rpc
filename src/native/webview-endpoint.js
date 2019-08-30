@@ -1,5 +1,8 @@
 /* global __DEV__ */
 
+import { rnRpcEventType } from '../common/common';
+
+
 export default class WebViewEndpoint {
   constructor(webView) {
     this.listeners = [];
@@ -10,7 +13,16 @@ export default class WebViewEndpoint {
     if (__DEV__) {
       console.log(`Sending message ${data}`);
     }
-    return this.webView.postMessage(data);
+    /* Explanation for the code below:
+    * 1) In a string message channel messages are expected to be received in
+    *   this structure:
+    *   { data: <string> }.
+    * 2) Payload can be added to a CustomEvent via the 'detail' property. */
+    const rcv_log_msg = __DEV__ ? `console.log('Receiving message ${data}');` : '';
+    return this.webView.injectJavaScript(`
+      ${rcv_log_msg}
+      document.dispatchEvent(new CustomEvent('${rnRpcEventType}', { detail: { data: JSON.stringify(${data}) } }));
+    `);
   }
 
   addEventListener(type, listener) {
@@ -22,7 +34,7 @@ export default class WebViewEndpoint {
 
   onMessage(event) {
     if (__DEV__) {
-      console.log(`Received message ${JSON.stringify(event.nativeEvent)}`);
+      console.log(`Received message ${event.nativeEvent.data}`);
     }
     this.listeners.forEach((listener) => {
       if (typeof listener === 'function') {
