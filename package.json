@@ -64,7 +64,7 @@
     "eslint-plugin-react": "^7.14.3",
     "jest": "^24.9.0",
     "react": "^16.8.3",
-    "react-native": "^0.59.10",
+    "react-native": "^0.62.3",
     "react-native-webview": "^6.5.1",
     "react-test-renderer": "^16.8.6",
     "webpack": "^4.39.3",
